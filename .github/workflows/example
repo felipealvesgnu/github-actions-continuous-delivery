@@ -1,0 +1,18 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+      - uses: actions/upload-artifact@master
+        with:
+          name: my-artifact
+          path: build/libs/*.jar
+            
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Download built artifact
+        uses: actions/download-artifact@master
+        with:
+          name: my-artifact
